@@ -19,7 +19,7 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    
+
     implementation("org.postgresql:postgresql:42.7.3")
     implementation("com.google.code.gson:gson:2.10.1")
 
@@ -28,7 +28,7 @@ dependencies {
 group = "ambovombe.kombarika"
 version = "kombarika"
 description = "kombarika"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {
