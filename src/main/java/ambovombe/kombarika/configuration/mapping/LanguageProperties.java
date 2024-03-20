@@ -1,3 +1,4 @@
+/* (C) 2024 */
 package ambovombe.kombarika.configuration.mapping;
 
 /*
@@ -5,34 +6,32 @@ package ambovombe.kombarika.configuration.mapping;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.util.HashMap;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-
 /**
- *
  * @author Mamisoa
  */
-@Setter @Getter
+@Setter
+@Getter
 public class LanguageProperties {
-    //GETTERS & SETTERS
-    private String name;
-    private String importSyntax;
-    private String packageSyntax;
-    private String openBracket;
-    private String closeBracket;
-    private String annotationSyntax;
-    private String encapsulation;
-    private String extension;
-    private String classSyntax;
-    private String fieldSyntax;
-    private String methodSyntax;
-    private String endOfInstruction;
-    private String constructorSyntax;
-    private HashMap<String, FrameworkProperties> frameworks;
+  // GETTERS & SETTERS
+  private String name;
+  private String importSyntax;
+  private String packageSyntax;
+  private String openBracket;
+  private String closeBracket;
+  private String annotationSyntax;
+  private String encapsulation;
+  private String extension;
+  private String classSyntax;
+  private String fieldSyntax;
+  private String methodSyntax;
+  private String endOfInstruction;
+  private String constructorSyntax;
+  private HashMap<String, FrameworkProperties> frameworks;
 
-    //CONSTRUCTOR
-    public LanguageProperties(){}
-
+  // CONSTRUCTOR
+  public LanguageProperties() {}
 }

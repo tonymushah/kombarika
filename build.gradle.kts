@@ -42,28 +42,29 @@ tasks.withType<Javadoc>() {
 }
 
 spotless {
-  // optional: limit format enforcement to just the files changed by this feature branch
-  ratchetFrom 'origin/main'
-
-  format 'misc', {
-    // define the files to apply `misc` to
-    target '*.gradle', '.gitattributes', '.gitignore'
-
-    // define the steps to apply to those files
-    trimTrailingWhitespace()
-    indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
-    endWithNewline()
-  }
   java {
-    // don't need to set target, it is inferred from java
+    // Use the default importOrder configuration
+    importOrder()
+    // optional: you can specify import groups directly
+    // note: you can use an empty string for all the imports you didn't specify explicitly, '|' to join group without blank line, and '\\#` prefix for static imports
+    // importOrder("java|javax", "com.acme", "", "\\#com.acme", "\\#")
+    // optional: instead of specifying import groups directly you can specify a config file
+    // export config file: https://github.com/diffplug/spotless/blob/main/ECLIPSE_SCREENSHOTS.md#creating-spotlessimportorder
+    // importOrderFile('eclipse-import-order.txt') // import order file as exported from eclipse
 
-    // apply a specific flavor of google-java-format
-    googleJavaFormat('1.8').aosp().reflowLongStrings().skipJavadocFormatting()
-    // fix formatting of type annotations
-    formatAnnotations()
-    // make sure every file has the following copyright header.
-    // optionally, Spotless can set copyright years by digging
-    // through git history (see "license" section below)
-    licenseHeader '/* (C)$YEAR */'
+    removeUnusedImports()
+
+    // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
+    //cleanthat()          // has its own section below
+
+    // Choose one of these formatters.
+    googleJavaFormat()   // has its own section below
+    // eclipse()            // has its own section below
+    //prettier()           // has its own section below
+    //clangFormat()        // has its own section below
+
+    formatAnnotations()  // fixes formatting of type annotations, see below
+
+    licenseHeader("/* (C) 2024 */") // or licenseHeaderFile
   }
 }
