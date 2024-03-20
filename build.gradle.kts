@@ -6,6 +6,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("com.diffplug.spotless") version "6.25.0"
+    id("io.freefair.lombok") version "8.6"
 }
 
 repositories {
@@ -16,10 +17,12 @@ repositories {
 }
 
 dependencies {
-    api(libs.com.google.code.gson.gson)
-    api(libs.org.postgresql.postgresql)
-    testImplementation(libs.junit.junit)
-    compileOnly(libs.org.projectlombok.lombok)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    
+    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("com.google.code.gson:gson:2.10.1")
+
 }
 
 group = "ambovombe.kombarika"
@@ -39,6 +42,16 @@ tasks.withType<JavaCompile>() {
 
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
+}
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+
+    maxHeapSize = "1G"
+
+    testLogging {
+        events("passed")
+    }
 }
 
 spotless {
